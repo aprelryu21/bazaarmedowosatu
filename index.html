@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bazaar Darmawanita SDN Medowo 1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        
+        .pixel-font {
+            font-family: 'Press Start 2P', cursive;
+        }
+        
+        .neobrutalism {
+            border: 4px solid #000;
+            box-shadow: 8px 8px 0px #000;
+        }
+        
+        .neobrutalism-hover:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0px #000;
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .shape {
+            position: absolute;
+            border: 3px solid #000;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .shape:nth-child(1) {
+            width: 60px;
+            height: 60px;
+            background: #ff6b6b;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .shape:nth-child(2) {
+            width: 40px;
+            height: 40px;
+            background: #4ecdc4;
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+            border-radius: 50%;
+        }
+        
+        .shape:nth-child(3) {
+            width: 80px;
+            height: 30px;
+            background: #ffe66d;
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        
+        .shape:nth-child(4) {
+            width: 50px;
+            height: 50px;
+            background: #ff8b94;
+            top: 40%;
+            right: 30%;
+            animation-delay: 1s;
+            transform: rotate(45deg);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        /* Particle animations */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #ff6b6b;
+            border: 2px solid #000;
+            border-radius: 50%;
+            animation: particleFloat 8s infinite linear;
+        }
+        
+        .particle:nth-child(1) {
+            left: 10%;
+            animation-delay: 0s;
+            background: #ff6b6b;
+        }
+        
+        .particle:nth-child(2) {
+            left: 20%;
+            animation-delay: 1s;
+            background: #4ecdc4;
+        }
+        
+        .particle:nth-child(3) {
+            left: 30%;
+            animation-delay: 2s;
+            background: #ffe66d;
+        }
+        
+        .particle:nth-child(4) {
+            left: 40%;
+            animation-delay: 3s;
+            background: #ff8b94;
+        }
+        
+        .particle:nth-child(5) {
+            left: 50%;
+            animation-delay: 4s;
+            background: #a8e6cf;
+        }
+        
+        .particle:nth-child(6) {
+            left: 60%;
+            animation-delay: 5s;
+            background: #ffd93d;
+        }
+        
+        .particle:nth-child(7) {
+            left: 70%;
+            animation-delay: 6s;
+            background: #ff9ff3;
+        }
+        
+        .particle:nth-child(8) {
+            left: 80%;
+            animation-delay: 7s;
+            background: #54a0ff;
+        }
+        
+        .particle:nth-child(9) {
+            left: 90%;
+            animation-delay: 0.5s;
+            background: #5f27cd;
+        }
+        
+        .particle:nth-child(10) {
+            left: 15%;
+            animation-delay: 1.5s;
+            background: #00d2d3;
+        }
+        
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Custom animations */
+        .animate-spin-slow {
+            animation: spin 3s linear infinite;
+        }
+        
+        .animate-bounce-slow {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+            border: 2px solid #000;
+        }
+        
+        .menu-item {
+            transition: all 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Welcome Page -->
+    <div id="welcomePage" class="min-h-screen flex flex-col justify-center items-center relative overflow-hidden" style="background-image: url('https://img.freepik.com/free-vector/hand-painted-watercolor-floral-background_23-2149001960.jpg?semt=ais_incoming&w=740&q=80'); background-size: cover; background-position: center;">
+        <!-- Overlay for better text readability -->
+        <div class="absolute inset-0 bg-white bg-opacity-30"></div>
+        
+        <!-- Floating particles -->
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        
+        <!-- Main content with neobrutalism style -->
+        <div class="text-center z-20 px-4">
+            <div class="neobrutalism bg-white p-8 mb-8 transform rotate-1 hover:rotate-0 transition-transform duration-300">
+                <h1 class="pixel-font text-2xl md:text-4xl lg:text-5xl text-black mb-4 leading-relaxed animate-pulse">
+                    Kelompok<br>Dharmawanita<br>SDN Medowo 1
+                </h1>
+                <div class="w-full h-2 bg-yellow-400 neobrutalism mt-4"></div>
+            </div>
+            
+            <button onclick="showMenuPage()" class="neobrutalism neobrutalism-hover bg-lime-400 px-8 py-4 pixel-font text-lg md:text-xl text-black transition-all duration-300 transform hover:scale-105">
+                Pesan Makanan
+            </button>
+            
+            <!-- Hidden audio element -->
+            <audio id="backgroundMusic" loop>
+                <source src="https://raw.githubusercontent.com/aprelryu21/bazaarmedowosatu/main/lagu.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+        
+        <div class="absolute bottom-4 text-center w-full z-20">
+            <div class="neobrutalism bg-black text-white px-4 py-2 inline-block">
+                <p class="pixel-font text-xs">Copyright @AprelRYU</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Page -->
+    <div id="menuPage" class="hidden min-h-screen bg-white">
+        <div class="container mx-auto px-4 py-8 pb-32">
+            <div class="neobrutalism bg-yellow-300 p-6 mb-4 mx-auto max-w-md transform -rotate-1">
+                <h1 class="pixel-font text-2xl md:text-3xl text-center text-black">Menu Bazaar</h1>
+            </div>
+            
+            <div class="neobrutalism bg-blue-300 p-4 mb-8 mx-auto max-w-lg transform rotate-1">
+                <p class="pixel-font text-sm text-center text-black">Dharmawanita SDN Medowo 1</p>
+            </div>
+            
+            <div id="menuGrid" class="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6 lg:gap-8">
+                <!-- Menu items will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Page -->
+    <div id="orderPage" class="hidden min-h-screen bg-white">
+        <div class="container mx-auto px-4 py-8 pb-32">
+            <div class="neobrutalism bg-yellow-300 p-6 mb-8 mx-auto max-w-md transform -rotate-2">
+                <h1 class="pixel-font text-2xl md:text-3xl text-center text-black">Pesanan</h1>
+            </div>
+            
+            <div class="max-w-md mx-auto">
+                <div class="neobrutalism bg-blue-300 p-6 mb-6 transform rotate-1">
+                    <div class="mb-4">
+                        <div class="neobrutalism bg-white p-2 mb-2 transform -rotate-1">
+                            <label class="pixel-font text-sm text-black block">Nama Pemesan</label>
+                        </div>
+                        <input type="text" id="customerName" class="w-full p-3 neobrutalism pixel-font text-sm transform rotate-1" placeholder="Masukkan nama">
+                    </div>
+                    <div class="mb-4">
+                        <div class="neobrutalism bg-white p-2 mb-2 transform rotate-1">
+                            <label class="pixel-font text-sm text-black block">Asal Sekolah</label>
+                        </div>
+                        <input type="text" id="schoolName" class="w-full p-3 neobrutalism pixel-font text-sm transform -rotate-1" placeholder="Masukkan asal sekolah">
+                    </div>
+                </div>
+                
+                <div id="orderList" class="mb-6">
+                    <!-- Order items will be populated by JavaScript -->
+                </div>
+                
+                <div class="neobrutalism bg-yellow-300 p-6 mb-6 transform -rotate-1">
+                    <div class="flex justify-between items-center">
+                        <div class="neobrutalism bg-black text-white px-3 py-2 transform rotate-2">
+                            <span class="pixel-font text-sm">Total:</span>
+                        </div>
+                        <div class="neobrutalism bg-white px-3 py-2 transform -rotate-2">
+                            <span id="totalPrice" class="pixel-font text-sm text-black">Rp 0</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <button onclick="createOrder()" class="w-full neobrutalism neobrutalism-hover bg-green-400 py-6 pixel-font text-lg text-black transition-all duration-300 transform hover:rotate-1">
+                    BUAT PESANAN
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Page -->
+    <div id="aboutPage" class="hidden min-h-screen bg-white">
+        <div class="container mx-auto px-4 py-8 pb-24">
+            <div class="neobrutalism bg-yellow-300 p-6 mb-8 mx-auto max-w-md transform rotate-1">
+                <h1 class="pixel-font text-2xl md:text-3xl text-center text-black">Tentang</h1>
+            </div>
+            
+            <div class="max-w-2xl mx-auto space-y-6">
+                <div class="neobrutalism bg-blue-300 p-6 transform -rotate-1">
+                    <p class="pixel-font text-xs leading-relaxed text-black mb-4">
+                        Website ini dibuat oleh AprelRYU guna memudahkan Ibu anggota Dharmawanita untuk memesan menu makanan dan minuman yang dijual selama kegiatan Bazaar Dharmawanita Kecamatan Kandangan oleh SD Negeri Medowo 1.
+                    </p>
+                </div>
+                
+                <!-- School Social Media Card -->
+                <div class="neobrutalism bg-yellow-300 p-6 transform rotate-2">
+                    <div class="neobrutalism bg-black text-white p-3 mb-4 transform -rotate-1">
+                        <h3 class="pixel-font text-sm">SDN Medowo 1</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <a href="https://www.instagram.com/medowosatu" target="_blank" class="flex items-center space-x-3 neobrutalism bg-white p-4 neobrutalism-hover transition-all duration-300 transform hover:-rotate-1">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                            <span class="pixel-font text-xs text-black">Instagram</span>
+                        </a>
+                        <a href="https://www.youtube.com/@sdnmedowosatuofficial" target="_blank" class="flex items-center space-x-3 neobrutalism bg-white p-4 neobrutalism-hover transition-all duration-300 transform hover:rotate-1">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
+                                <polygon points="9.75,15.02 15.5,11.75 9.75,8.48"/>
+                            </svg>
+                            <span class="pixel-font text-xs text-black">YouTube</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Developer Social Media Card -->
+                <div class="neobrutalism bg-blue-300 p-6 transform -rotate-2">
+                    <div class="neobrutalism bg-black text-white p-3 mb-4 transform rotate-1">
+                        <h3 class="pixel-font text-sm">AprelRYU - Pengembang</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <a href="https://www.instagram.com/aprelryu" target="_blank" class="flex items-center space-x-3 neobrutalism bg-white p-4 neobrutalism-hover transition-all duration-300 transform hover:rotate-1">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                            <span class="pixel-font text-xs text-black">Instagram</span>
+                        </a>
+                        <a href="https://www.youtube.com/aprelryu" target="_blank" class="flex items-center space-x-3 neobrutalism bg-white p-4 neobrutalism-hover transition-all duration-300 transform hover:-rotate-1">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
+                                <polygon points="9.75,15.02 15.5,11.75 9.75,8.48"/>
+                            </svg>
+                            <span class="pixel-font text-xs text-black">YouTube</span>
+                        </a>
+                        <a href="https://www.tiktok.com/@aprelryu" target="_blank" class="flex items-center space-x-3 neobrutalism bg-white p-4 neobrutalism-hover transition-all duration-300 transform hover:rotate-1">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+                            </svg>
+                            <span class="pixel-font text-xs text-black">TikTok</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div id="bottomNav" class="hidden fixed bottom-4 left-1/2 transform -translate-x-1/2 w-4/5 max-w-md">
+        <div class="neobrutalism bg-white p-4 shadow-2xl">
+            <div class="flex justify-around">
+                <button onclick="showPage('menu')" id="menuBtn" class="flex flex-col items-center space-y-2 px-6 py-3 relative neobrutalism-hover transition-all duration-300">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                        <circle cx="12" cy="8" r="2"/>
+                        <path d="M12 14v6"/>
+                    </svg>
+                    <span class="pixel-font text-xs text-black">Menu</span>
+                </button>
+                <button onclick="showPage('order')" id="orderBtn" class="flex flex-col items-center space-y-2 px-6 py-3 relative neobrutalism-hover transition-all duration-300">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"/>
+                        <circle cx="20" cy="21" r="1"/>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                    </svg>
+                    <span class="pixel-font text-xs text-black">Pesanan</span>
+                    <div id="cartBadge" class="cart-badge hidden">0</div>
+                </button>
+                <button onclick="showPage('about')" id="aboutBtn" class="flex flex-col items-center space-y-2 px-6 py-3 relative neobrutalism-hover transition-all duration-300">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 16v-4"/>
+                        <path d="M12 8h.01"/>
+                    </svg>
+                    <span class="pixel-font text-xs text-black">Tentang</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Menu data
+        const menuItems = [
+            { id: 1, name: "Ayam Bakar", price: 10000, image: "https://image.idntimes.com/post/20230809/ins-saver-868477387-b92c30be9bda955e59d280759a6f55b9.jpg" },
+            { id: 2, name: "Ayam Suwir", price: 10000, image: "https://img-global.cpcdn.com/recipes/163ea95e7919acfe/680x781cq80/ayam-suwir-simple-enak-foto-resep-utama.jpg" },
+            { id: 3, name: "Botok Tahu Tempe", price: 3000, image: "https://awsimages.detik.net.id/community/media/visual/2021/12/12/resep-botok-tempe-dan-teri.jpeg?w=1200" },
+            { id: 4, name: "Buntil", price: 5000, image: "https://asset.kompas.com/crops/4EQi-NX89ssNRHLBGzenIaXWdXw=/3x0:700x465/1200x800/data/photo/2021/02/08/6020e623372b3.jpg" },
+            { id: 5, name: "Pepes Pindang", price: 5000, image: "https://img-global.cpcdn.com/recipes/2e9f2341a51f9eac/680x781f0.5_0.502203_1.0q80/pepes-ikan-pindang-foto-resep-utama.jpg" },
+            { id: 6, name: "Perkedel Kentang", price: 5000, image: "https://img-global.cpcdn.com/recipes/0c10fff9a899e44d/680x781cq80/perkedel-kentang-enak-foto-resep-utama.jpg" },
+            { id: 7, name: "Wonton", price: 5000, image: "https://assets-a2.kompasiana.com/items/album/2023/11/12/whatsapp-image-2023-11-11-at-10-57-07-pm-654fb388110fce55b4514312.jpeg?t=o&v=500" },
+            { id: 8, name: "Sate Tahu", price: 1000, image: "https://palpos.bacakoran.co/upload/41b56e86a7e48ee3b247223deb724203.jpg" },
+            { id: 9, name: "Donat", price: 5000, image: "https://i0.wp.com/www.topwisata.info/wp-content/uploads/2025/05/donat-lumer.webp?fit=750%2C500&ssl=1" },
+            { id: 10, name: "Capucino Cincau", price: 5000, image: "https://i.ytimg.com/vi/el_lQeQm5Ps/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCc_g9WhPvOF8FamhEGrfVE_4xRMQ" },
+            { id: 11, name: "Jamu", price: 6000, image: "https://storage.googleapis.com/paxelmarket_v3_bucket/2023/01/09/RYX5X2YWCOMWW81C.jpg" }
+        ];
+
+        let cart = [];
+        let currentPage = 'welcome';
+
+        function showMenuPage() {
+            document.getElementById('welcomePage').classList.add('hidden');
+            document.getElementById('menuPage').classList.remove('hidden');
+            document.getElementById('bottomNav').classList.remove('hidden');
+            currentPage = 'menu';
+            renderMenu();
+            updateActiveButton();
+            
+            // Play background music
+            const music = document.getElementById('backgroundMusic');
+            music.play().catch(e => {
+                console.log('Audio autoplay prevented by browser');
+            });
+        }
+
+        function showPage(page) {
+            // Hide all pages
+            document.getElementById('menuPage').classList.add('hidden');
+            document.getElementById('orderPage').classList.add('hidden');
+            document.getElementById('aboutPage').classList.add('hidden');
+            
+            // Show selected page
+            document.getElementById(page + 'Page').classList.remove('hidden');
+            currentPage = page;
+            
+            if (page === 'order') {
+                renderOrderList();
+            }
+            
+            updateActiveButton();
+        }
+
+        function updateActiveButton() {
+            // Reset all buttons
+            document.querySelectorAll('#bottomNav button').forEach(btn => {
+                btn.classList.remove('bg-yellow-400', 'neobrutalism');
+            });
+            
+            // Highlight active button
+            if (currentPage === 'menu') {
+                document.getElementById('menuBtn').classList.add('bg-yellow-400', 'neobrutalism');
+            } else if (currentPage === 'order') {
+                document.getElementById('orderBtn').classList.add('bg-yellow-400', 'neobrutalism');
+            } else if (currentPage === 'about') {
+                document.getElementById('aboutBtn').classList.add('bg-yellow-400', 'neobrutalism');
+            }
+        }
+
+        function renderMenu() {
+            const menuGrid = document.getElementById('menuGrid');
+            menuGrid.innerHTML = '';
+            
+            const colors = ['bg-yellow-300', 'bg-blue-300'];
+            
+            menuItems.forEach((item, index) => {
+                const menuCard = document.createElement('div');
+                const bgColor = colors[index % colors.length];
+                const rotation = index % 2 === 0 ? 'rotate-1' : '-rotate-1';
+                
+                menuCard.className = `menu-item neobrutalism ${bgColor} p-2 sm:p-3 md:p-4 lg:p-6 transform ${rotation} hover:rotate-0 transition-all duration-300`;
+                menuCard.innerHTML = `
+                    <div class="text-center">
+                        <div class="neobrutalism bg-white p-1 sm:p-2 mb-2 sm:mb-3 md:mb-4 transform -rotate-1">
+                            <img src="${item.image}" alt="${item.name}" class="w-full h-20 sm:h-28 md:h-36 lg:h-48 object-cover neobrutalism" onerror="this.src=''; this.alt='Gambar tidak dapat dimuat'; this.style.display='none';">
+                        </div>
+                        <div class="neobrutalism bg-gray-100 p-1 sm:p-2 md:p-3 mb-2 sm:mb-3 md:mb-4 transform rotate-1">
+                            <h3 class="pixel-font text-xs sm:text-sm mb-1 sm:mb-2 text-black leading-tight">${item.name}</h3>
+                            <p class="pixel-font text-xs text-black">Rp ${item.price.toLocaleString()}</p>
+                        </div>
+                        <button onclick="addToCart(${item.id})" class="w-full neobrutalism neobrutalism-hover bg-orange-400 py-2 sm:py-3 pixel-font text-xs sm:text-sm text-black transition-all duration-300 transform hover:scale-105">
+                            PESAN
+                        </button>
+                    </div>
+                `;
+                menuGrid.appendChild(menuCard);
+            });
+        }
+
+        function addToCart(itemId) {
+            const item = menuItems.find(m => m.id === itemId);
+            const existingItem = cart.find(c => c.id === itemId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...item, quantity: 1 });
+            }
+            
+            updateCartBadge();
+        }
+
+        function updateCartBadge() {
+            const badge = document.getElementById('cartBadge');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            if (totalItems > 0) {
+                badge.classList.remove('hidden');
+                badge.textContent = totalItems;
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function renderOrderList() {
+            const orderList = document.getElementById('orderList');
+            orderList.innerHTML = '';
+            
+            if (cart.length === 0) {
+                orderList.innerHTML = `
+                    <div class="neobrutalism bg-yellow-300 p-6 text-center transform rotate-1">
+                        <p class="pixel-font text-sm text-black">Belum ada pesanan</p>
+                    </div>
+                `;
+            } else {
+                cart.forEach((item, index) => {
+                    const orderItem = document.createElement('div');
+                    const rotation = index % 2 === 0 ? 'rotate-1' : '-rotate-1';
+                    orderItem.className = `neobrutalism bg-white p-4 mb-4 transform ${rotation}`;
+                    orderItem.innerHTML = `
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="neobrutalism bg-white p-1 transform -rotate-2">
+                                    <img src="${item.image}" alt="${item.name}" class="w-12 h-12 object-cover neobrutalism" onerror="this.src=''; this.alt='Gambar tidak dapat dimuat'; this.style.display='none';">
+                                </div>
+                                <div>
+                                    <div class="neobrutalism bg-yellow-300 px-2 py-1 mb-1 transform rotate-1">
+                                        <h4 class="pixel-font text-xs text-black">${item.name}</h4>
+                                    </div>
+                                    <div class="neobrutalism bg-blue-300 px-2 py-1 transform -rotate-1">
+                                        <p class="pixel-font text-xs text-black">Rp ${item.price.toLocaleString()}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <button onclick="decreaseQuantity(${item.id})" class="neobrutalism neobrutalism-hover bg-red-400 w-10 h-10 flex items-center justify-center pixel-font text-sm transform hover:rotate-12">-</button>
+                                <div class="neobrutalism bg-yellow-300 px-3 py-2 transform rotate-2">
+                                    <span class="pixel-font text-sm text-black">${item.quantity}</span>
+                                </div>
+                                <button onclick="increaseQuantity(${item.id})" class="neobrutalism neobrutalism-hover bg-green-400 w-10 h-10 flex items-center justify-center pixel-font text-sm transform hover:-rotate-12">+</button>
+                            </div>
+                        </div>
+                    `;
+                    orderList.appendChild(orderItem);
+                });
+            }
+            
+            updateTotalPrice();
+        }
+
+        function increaseQuantity(itemId) {
+            const item = cart.find(c => c.id === itemId);
+            if (item) {
+                item.quantity += 1;
+                renderOrderList();
+                updateCartBadge();
+            }
+        }
+
+        function decreaseQuantity(itemId) {
+            const itemIndex = cart.findIndex(c => c.id === itemId);
+            if (itemIndex !== -1) {
+                if (cart[itemIndex].quantity > 1) {
+                    cart[itemIndex].quantity -= 1;
+                } else {
+                    cart.splice(itemIndex, 1);
+                }
+                renderOrderList();
+                updateCartBadge();
+            }
+        }
+
+        function updateTotalPrice() {
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            document.getElementById('totalPrice').textContent = `Rp ${total.toLocaleString()}`;
+        }
+
+        function createOrder() {
+            const customerName = document.getElementById('customerName').value.trim();
+            const schoolName = document.getElementById('schoolName').value.trim();
+            
+            if (!customerName || !schoolName) {
+                alert('Mohon lengkapi nama pemesan dan asal sekolah');
+                return;
+            }
+            
+            if (cart.length === 0) {
+                alert('Belum ada pesanan yang dipilih');
+                return;
+            }
+            
+            let orderDetails = '';
+            cart.forEach(item => {
+                orderDetails += `${item.name} x${item.quantity}, `;
+            });
+            orderDetails = orderDetails.slice(0, -2); // Remove last comma and space
+            
+            const message = `Assalamualaikum Bu, Saya ${customerName} dari ${schoolName}, mau memesan ${orderDetails} untuk acara Dharmawanita besok. Terimakasih`;
+            const whatsappUrl = `https://wa.me/081359856526?text=${encodeURIComponent(message)}`;
+            
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Initialize
+        updateActiveButton();
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98017be042d9f91e',t:'MTc1ODAzNzQ1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
